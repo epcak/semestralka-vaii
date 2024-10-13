@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="styly/zakladny.css">
+    <!-- Kod na pridanie fontu z: https://rsms.me/inter/ -->
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <!-- Koniec kodu na pridanie fontu -->
+    <script type="text/javascript" src="skripty/navigacia_burger.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li class="logo_webu"><a href="index.html"><img src="Obrazky/logo.png" alt="logo webu"></a></li>
+                <li class="menu_burger"><img src="Obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
+                <li class="navigacia_prava konto_polozky_menu"><a href="#">Odhlásiť sa</a></li>
+                <li class="navigacia_prava konto_polozky_menu"><a href="#">Konto</a></li>
+                <li class="skryte_v_menu" id="prve_skryte"><a href="#">Správy</a></li>
+                <li class="skryte_v_menu"><a href="#">Návody</a></li>
+                <li class="skryte_v_menu"><a href="#">Fórum</a></li>
+                <li class="skryte_v_menu"><a href="#">Blogy</a></li>
+                <li class="vyhladavanie skryte_v_menu navigacia_prava">
+                    <search>
+                        <form action="index.html">
+                            <label for="hladanie">Vyhladavanie</label>
+                            <input type="search" id="hladanie" name="q">
+                            <button type="submit">Hľadať</button>
+                        </form>
+                    </search>
+                </li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
