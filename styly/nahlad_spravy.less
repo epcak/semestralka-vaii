@@ -1,0 +1,72 @@
+@import "definicie";
+
+.sprava {
+  h2 a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: wavy overline;
+    }
+  }
+}
+
+.hlavna_sprava {
+  display: inline-block;
+  img {
+    margin-right: 20px;
+    float: left;
+    width: 40%;
+    filter: grayscale(40%);
+    border: rgba(0, 0, 0, 0.24) 2px solid;
+    transition: 0.3s;
+    &:hover {
+      filter: grayscale(0%);
+      border-color: rgba(0, 0, 0, 0);
+      transition: 0.3s;
+    }
+  }
+  h2 a, p {
+    margin: 0 auto;
+  }
+  p {
+    height: 100px;
+    overflow: hidden;
+  }
+}
+
+.sprava_tlacitka {
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    top: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    &:hover {
+      transition-duration: 0.3s;
+      filter: brightness(90%);
+    }
+  }
+}
+
+.fialova_sekcia .sprava_tlacitka {
+  a {
+    background-color: @primarnaFarbaTextu;
+    color: @primarnaFarbaPozadia;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .hlavna_sprava {
+    img {
+      float: none;
+      width: 99%;
+      max-height: 400px;
+    }
+  }
+  .sprava_tlacitka {
+    a {
+      position: initial;
+      top: 0;
+    }
+  }
+}

@@ -27,6 +27,7 @@ body {
 }
 
 header {
+  z-index: 100;
   background-color: @farbaPozadiaNavigacie;
   backdrop-filter: blur(5px);
   position: fixed;
@@ -227,6 +228,9 @@ header {
 .fialova_sekcia {
   background-color: @primarnaFarbaPozadia;
   color: @primarnaFarbaTextu;
+  a {
+    color: @primarnaFarbaTextu;
+  }
 }
 .prva_sekcia {
   padding-top: 80px;
