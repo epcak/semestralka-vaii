@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet" href="styly/zakladny.css">
-    <link rel="stylesheet" href="styly/nahlad_spravy.css">
+    <link rel="stylesheet/less" href="styly/zakladny.less">
+    <link rel="stylesheet/less" href="styly/nahlad_spravy.less">
+    <!-- Kod na prekladac less z: https://lesscss.org/-->
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+    <!-- Koniec kodu na prekladac -->
     <!-- Kod na pridanie fontu z: https://rsms.me/inter/ -->
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- Koniec kodu na pridanie fontu -->
-    <script type="text/javascript" src="skripty/navigacia_burger.js"></script>
+    <script src="skripty/navigacia_burger.js"></script>
 </head>
 <body>
+    <!-- todo: H1, ale namam tusenia aky tam dat pre SEO ked je to uvodna strana + asi ho skryt -->
     <div class="header_wrapper">
         <header>
             <nav>
@@ -26,13 +30,11 @@
                     <li class="skryte_v_menu"><a href="#">Fórum</a></li>
                     <li class="skryte_v_menu"><a href="#">Blogy</a></li>
                     <li class="vyhladavanie skryte_v_menu navigacia_prava">
-                        <search>
-                            <form action="index.html">
-                                <label for="hladanie">Vyhladavanie</label>
-                                <input type="search" id="hladanie" name="q">
-                                <button type="submit">Hľadať</button>
-                            </form>
-                        </search>
+                        <form action="index.html">
+                            <label for="hladanie">Vyhladavanie</label>
+                            <input type="search" id="hladanie" name="q">
+                            <button type="submit">Hľadať</button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -53,7 +55,54 @@
     </div>
     <div class="sekcia">
         <div class="obmedzovac_sekcie">
-
+            <div class="stredna_sprava sprava">
+                <a href="#"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="#">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="#">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="#"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="#">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="#">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="#"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="#">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="#">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="#"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="#">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="#">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="#"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="#">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="#">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="nacitat_dalsie">
+                <a href="#">Načítať ďalšie články</a>
+            </div>
         </div>
     </div>
     <footer>
