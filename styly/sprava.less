@@ -1,0 +1,95 @@
+@import "definicie";
+
+.titulok_spravy {
+  height: 500px;
+  width: 100%;
+  text-align: center;
+  // Zaciatok ciastocneho kodu z modelu Claude 3 (odstranenie filtra pre pozadie z h1)
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 500px;
+    width: 100%;
+    background-image: url("../obrazky/testovaci.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: brightness(40%);
+  }
+  // Koniec kodu z modelu
+  h1 {
+    width: 95%;
+    position: relative;
+    top: 60%;
+    margin: 0 auto;
+    color: white;
+  }
+}
+
+.kontent_spravy {
+  padding: 10px;
+  a {
+    text-decoration: none;
+    color: @primarnaFarbaPozadia;
+    font-weight: bold;
+    &:hover {
+      text-decoration: wavy overline;
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    filter: brightness(90%);
+    max-width: 800px;
+    width: 100%;
+  }
+}
+
+.koniec_spravy {
+  padding: 10px;
+  h2 {
+    text-align: center;
+  }
+  .komentar {
+    border: 2px rgba(0, 0, 0, 0.4) solid;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    h3 a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: wavy overline;
+      }
+    }
+  }
+  .podkomentar {
+    margin-left: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .pridat_komentar {
+    margin: 20px auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: wavy overline;
+      }
+    }
+  }
+}
+
+.podciarknuty_text {
+  text-decoration: underline;
+}
+.preciarknuty_text {
+  text-decoration: line-through;
+}
+.sikmy_text {
+  font-style: italic;
+}
+.tucny_text {
+  font-weight: bold;
+}
