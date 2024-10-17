@@ -96,6 +96,36 @@
   }
 }
 
+.mala_sprava {
+  padding: 1px 20px;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .sprava_tlacitka {
+    float: right;
+    position: relative;
+    top: -60px;
+  }
+  h3 {
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: wavy overline;
+      }
+    }
+  }
+}
+
+.fialova_sekcia .nacitat_dalsie a {
+  color: @primarnaFarbaTextu;
+}
+
+.nazov_sekcie {
+  padding-top: 20px;
+  margin-left: 20px;
+}
+
 @media only screen and (max-width: 1050px) {
   .hlavna_sprava {
     padding-bottom: 10px;
@@ -119,6 +149,17 @@
     p {
       margin-bottom: 20px;
     }
+  }
+  .mala_sprava {
+    padding-bottom: 30px;
+    text-align: center;
+    .sprava_tlacitka {
+      float: none;
+      position: initial;
+    }
+  }
+  .stred_mobil {
+    text-align: center;
   }
 }
 
