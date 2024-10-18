@@ -6,6 +6,7 @@
     <title>Title</title>
     <link rel="stylesheet/less" href="styly/zakladny.less">
     <link rel="stylesheet/less" href="styly/nahlad_spravy.less">
+    <link rel="stylesheet/less" href="styly/spravy.less">
     <!-- Kod na prekladac less z: https://lesscss.org/-->
     <script src="https://cdn.jsdelivr.net/npm/less" ></script>
     <!-- Koniec kodu na prekladac -->
@@ -16,7 +17,6 @@
     <script src="skripty/navigacia_burger.js"></script>
 </head>
 <body>
-    <!-- todo: H1, ale namam tusenia aky tam dat pre SEO ked je to uvodna strana + asi ho skryt -->
     <div class="header_wrapper">
         <header>
             <nav>
@@ -40,39 +40,22 @@
             </nav>
         </header>
     </div>
-    <div class="sekcia fialova_sekcia prva_sekcia">
+    <div class="sekcia fialova_sekcia prva_sekcia kategorie">
         <div class="obmedzovac_sekcie">
-            <div class="hlavna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obrazok spravy"></a>
-                <h2><a href="sprava.html">Názov správy</a></h2>
-                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
-                <div class="sprava_tlacitka">
-                    <a href="sprava.html">Čítať</a>
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
+            <h1>Správy</h1>
+            <ul>
+                <li><a href="#kategoria1">abcd123</a></li>
+                <li><a href="#kategoria2">abcd123</a></li>
+                <li><a href="#kategoria3">abcd123</a></li>
+                <li><a href="#">abcd123</a></li>
+                <li><a href="#">abcd123</a></li>
+                <li><a href="#">abcd123</a></li>
+            </ul>
         </div>
     </div>
-    <div class="sekcia">
+    <div class="skecia sekundarne_fialova_sekcia kategoria" id="kategoria1">
         <div class="obmedzovac_sekcie">
-            <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
-                <h2><a href="sprava.html">Názov správy</a></h2>
-                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
-                <div class="sprava_tlacitka">
-                    <a href="sprava.html">Čítať</a>
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
-            <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
-                <h2><a href="sprava.html">Názov správy</a></h2>
-                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
-                <div class="sprava_tlacitka">
-                    <a href="sprava.html">Čítať</a>
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
+            <h2 class="nazov_kategorie">Nazov kategorie</h2>
             <div class="stredna_sprava sprava">
                 <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
@@ -105,56 +88,74 @@
             </div>
         </div>
     </div>
-    <div class="skecia fialova_sekcia stred_mobil">
+    <div class="skecia fialova_sekcia kategoria" id="kategoria2">
         <div class="obmedzovac_sekcie">
-            <h2 class="nazov_sekcie">Najnovšie správy</h2>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
+            <h2 class="nazov_kategorie">Nazov kategorie</h2>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
                     <a href="#">Uložiť do kolekcie</a>
                 </div>
             </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
                     <a href="#">Uložiť do kolekcie</a>
                 </div>
             </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
                     <a href="#">Uložiť do kolekcie</a>
                 </div>
             </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
-                <div class="sprava_tlacitka">
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
-                <div class="sprava_tlacitka">
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
-                <div class="sprava_tlacitka">
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
-            <div class="mala_sprava sprava">
-                <h3><a href="sprava.html">Názov správy ktorá je aktuálne vydaná</a></h3>
-                <div class="sprava_tlacitka">
-                    <a href="#">Uložiť do kolekcie</a>
-                </div>
-            </div>
-            <br>
             <div class="nacitat_dalsie">
                 <a href="#">Načítať ďalšie správy</a>
             </div>
-            <br>
+        </div>
+    </div>
+    <div class="skecia sekundarne_fialova_sekcia kategoria" id="kategoria3">
+        <div class="obmedzovac_sekcie">
+            <h2 class="nazov_kategorie">Nazov kategorie</h2>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="stredna_sprava sprava">
+                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <h2><a href="sprava.html">Názov správy</a></h2>
+                <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
+                <div class="sprava_tlacitka">
+                    <a href="sprava.html">Čítať</a>
+                    <a href="#">Uložiť do kolekcie</a>
+                </div>
+            </div>
+            <div class="nacitat_dalsie">
+                <a href="#">Načítať ďalšie správy</a>
+            </div>
         </div>
     </div>
     <footer>

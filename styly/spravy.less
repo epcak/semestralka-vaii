@@ -1,0 +1,40 @@
+@import "definicie";
+
+.kategorie {
+  h1 {
+    text-align: center;
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      padding: 15px;
+      a {
+        font-weight: bold;
+        font-size: large;
+        text-decoration: none;
+        padding: 15px;
+        &:hover {
+          text-decoration: wavy overline;
+        }
+      }
+    }
+  }
+}
+
+.kategoria {
+  padding: 10px 10px 20px;
+}
+
+.sekundarne_fialova_sekcia .nazov_kategorie {
+  color: @primarnaFarbaPozadia;
+}
+
+@media only screen and (max-width: 1050px) {
+  .kategoria {
+    .nazov_kategorie {
+      text-align: center;
+    }
+  }
+}
