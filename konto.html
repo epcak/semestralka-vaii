@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konto</title>
+    <link rel="stylesheet/less" href="styly/zakladny.less">
+    <link rel="stylesheet/less" href="styly/konto.less">
+    <!-- Kod na prekladac less z: https://lesscss.org/-->
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+    <!-- Koniec kodu na prekladac -->
+    <!-- Kod na pridanie fontu z: https://rsms.me/inter/ -->
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <!-- Koniec kodu na pridanie fontu -->
+    <script src="skripty/navigacia_burger.js"></script>
+</head>
+<body>
+    <div class="header_wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li class="logo_webu"><a href="index.html"><img src="obrazky/logo.png" alt="logo webu"></a></li>
+                    <li class="menu_burger"><img src="obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="#">Odhlásiť sa</a></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="konto.html">Konto</a></li>
+                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy.html">Správy</a></li>
+                    <li class="skryte_v_menu"><a href="#">Návody</a></li>
+                    <li class="skryte_v_menu"><a href="#">Fórum</a></li>
+                    <li class="skryte_v_menu"><a href="#">Blogy</a></li>
+                    <li class="vyhladavanie skryte_v_menu navigacia_prava">
+                        <form action="index.html">
+                            <label for="hladanie">Vyhladavanie</label>
+                            <input type="search" id="hladanie" name="q">
+                            <button type="submit">Hľadať</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="sekcia fialova_sekcia prva_sekcia">
+        <div class="obmedzovac_sekcie">
+            <h1>Konto</h1>
+        </div>
+    </div>
+    <div class="sekcia sekundarne_fialova_sekcia blog">
+        <div class="obmedzovac_sekcie">
+            <h2>Blog</h2>
+            <h3>Moje články</h3>
+            <div class="tlacitko">
+                <a href="#">Pridať nový článok</a>
+            </div>
+            <div class="clanok">
+                <h4><a href="#">Názov článku</a></h4>
+                <p>Krátky úryvok z článku. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus!</p>
+            </div>
+            <div class="clanok">
+                <h4><a href="#">Názov článku</a></h4>
+                <p>Krátky úryvok z článku. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus!</p>
+            </div>
+            <div class="clanok">
+                <h4><a href="#">Názov článku</a></h4>
+                <p>Krátky úryvok z článku. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus!</p>
+            </div>
+            <div class="clanok">
+                <h4><a href="#">Názov článku</a></h4>
+                <p>Krátky úryvok z článku. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus!</p>
+            </div>
+            <div class="clanok">
+                <h4><a href="#">Názov článku</a></h4>
+                <p>Krátky úryvok z článku. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus!</p>
+            </div>
+            <div class="nacitat_dalsie">
+                <a href="#">Načítať ďalšie články</a>
+            </div>
+        </div>
+    </div>
+    <div class="sekcia fialova_sekcia ucet">
+        <div class="obmedzovac_sekcie">
+            <h2>Nastavenia účtu</h2>
+            <div class="kategoria_nastavenia heslo">
+                <h3>Heslo</h3>
+                <form action="konto.html">
+                    <label for="aktualne_heslo">Aktuálne heslo</label>
+                    <input type="password" id="aktualne_heslo">
+                    <label for="nove_heslo">Nové heslo</label>
+                    <input type="password" id="nove_heslo">
+                    <label for="opakovane_heslo">Nové heslo</label>
+                    <input type="password" id="opakovane_heslo">
+                    <button type="submit">Zmeniť heslo</button>
+                </form>
+            </div>
+            <div class="kategoria_nastavenia udaje">
+                <h3>Osobné údaje</h3>
+                <form action="konto.html">
+                    <label for="uzivatelske_meno">Užívateľské meno</label>
+                    <input type="text" id="uzivatelske_meno">
+                    <label for="email">E-mail</label>
+                    <input type="text" id="email">
+                    <button type="submit">Zmeniť osobné údaje</button>
+                </form>
+            </div>
+            <div class="kategoria_nastavenia">
+                <h3>Odstránenie účtu</h3>
+                <form action="konto.html">
+                    <label for="heslo_odstranit">Aktuálne heslo</label>
+                    <input type="password" id="heslo_odstranit">
+                    <button type="submit">Odstrániť účet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="sekcia obmedzovac_sekcie">
+            <p>©Batat</p>
+        </div>
+    </footer>
+</body>
+</html>
