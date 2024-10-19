@@ -1,0 +1,71 @@
+@import "definicie";
+
+.prva_sekcia {
+  text-align: center;
+  #lbl_vyhladavanie {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  #text_vyhladavanie {
+    padding: 5px 15px;
+    border-radius: 10px;
+  }
+  .polozka_filtra {
+    text-align: left;
+    padding: 10px;
+    width: 100px;
+    font-size: large;
+    margin: 10px auto;
+    border-radius: 10px;
+    background-color: rgba(black, 0.1);
+  }
+  form button {
+    cursor: pointer;
+    font-weight: bold;
+    color: @primarnaFarbaPozadia;
+    background-color: @primarnaFarbaTextu;
+    padding: 7px 20px;
+    border-radius: 10px;
+    border: none;
+    &:hover {
+      filter: brightness(85%);
+    }
+  }
+}
+
+.vysledok {
+  padding: 10px;
+  h3 {
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: wavy overline;
+      }
+    }
+  }
+}
+
+.vysledok_forum {
+  h3 a{
+    color: @forumFarbaPozadia;
+  }
+}
+
+.vysledok_blog {
+  h3 a{
+    color: @blogFarbaPozadia;
+  }
+}
+
+.vysledok_navody {
+  h3 a{
+    color: @navodyFarbaPozadia;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .vysledok h3 {
+    text-align: center;
+  }
+}
