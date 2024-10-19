@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nazov prispevku</title>
+    <link rel="stylesheet/less" href="styly/zakladny.less">
+    <link rel="stylesheet/less" href="styly/forum.less">
+    <!-- Kod na prekladac less z: https://lesscss.org/-->
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+    <!-- Koniec kodu na prekladac -->
+    <!-- Kod na pridanie fontu z: https://rsms.me/inter/ -->
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <!-- Koniec kodu na pridanie fontu -->
+    <script src="skripty/navigacia_burger.js"></script>
+</head>
+<body>
+    <div class="header_wrapper">
+        <header>
+            <nav>
+                <ul>
+                    <li class="logo_webu"><a href="index.html"><img src="obrazky/logo.png" alt="logo webu"></a></li>
+                    <li class="menu_burger"><img src="obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="prihlasovanie.html">Odhlásiť sa</a></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="konto.html">Konto</a></li>
+                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy.html">Správy</a></li>
+                    <li class="skryte_v_menu"><a href="#">Návody</a></li>
+                    <li class="skryte_v_menu"><a href="forum.html">Fórum</a></li>
+                    <li class="skryte_v_menu"><a href="#">Blogy</a></li>
+                    <li class="vyhladavanie skryte_v_menu navigacia_prava">
+                        <form action="index.html">
+                            <label for="hladanie">Vyhladavanie</label>
+                            <input type="search" id="hladanie" name="q">
+                            <button type="submit">Hľadať</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="sekcia prva_sekcia forum_primarna_sekcia">
+        <div class="obmedzovac_sekcie">
+            <h1>Nazov prispevku do fora</h1>
+        </div>
+    </div>
+    <div class="sekcia forum_sekundarna_sekcia">
+        <div class="obmedzovac_sekcie">
+            <div class="polozka_fora">
+                <h4><a href="#">Mrkvicka32</a></h4>
+                <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                <p>Nam congue, mauris non dictum sollicitudin, mauris ex porttitor leo, nec rhoncus lectus lorem at risus. Suspendisse potenti. Mauris tristique turpis sem, lacinia commodo lacus facilisis eu. Integer feugiat turpis nec nulla placerat egestas. Maecenas enim turpis, sollicitudin et nulla vitae, sagittis scelerisque sem. Donec quis nunc non lorem consectetur fringilla. Maecenas at placerat magna. Vivamus eu consectetur purus. Fusce vitae viverra eros, non convallis felis. Vivamus cursus sapien quis sapien feugiat bibendum. Mauris pulvinar vel nibh in pharetra. Suspendisse dignissim tempus lectus a vestibulum. Suspendisse elementum neque eu ultricies finibus. Pellentesque rutrum nisi ut rhoncus fringilla.</p>
+                <div class="odpoved">
+                    <a href="#" class="">Odpovedať</a>
+                    <a href="#" class="plus">↑ 24</a>
+                    <a href="#" class="minus">↓ 3</a>
+                </div>
+            </div>
+            <div class="polozka_fora">
+                <h4><a href="#">Mrkvicka32</a></h4>
+                <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                <div class="odpoved">
+                    <a href="#" class="">Odpovedať</a>
+                    <a href="#" class="plus">↑ 24</a>
+                    <a href="#" class="minus">↓ 3</a>
+                </div>
+            </div>
+            <div class="polozka_fora">
+                <h4><a href="#">Mrkvicka32</a></h4>
+                <div class="citacia">
+                    <h4><a href="#">Mrkvicka32</a></h4>
+                    <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                </div>
+                <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                <div class="odpoved">
+                    <a href="#" class="">Odpovedať</a>
+                    <a href="#" class="plus">↑ 24</a>
+                    <a href="#" class="minus">↓ 3</a>
+                </div>
+            </div>
+            <div class="polozka_fora">
+                <h4><a href="#">Mrkvicka32</a></h4>
+                <div class="citacia">
+                    <h4><a href="#">Mrkvicka32</a></h4>
+                    <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                </div>
+                <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                <div class="odpoved">
+                    <a href="#" class="">Odpovedať</a>
+                    <a href="#" class="plus">↑ 24</a>
+                    <a href="#" class="minus">↓ 3</a>
+                </div>
+            </div>
+            <div class="polozka_fora">
+                <h4><a href="#">Mrkvicka32</a></h4>
+                <p>Suspendisse scelerisque eros commodo massa mattis cursus. <a href="#">Fusce tincidunt lorem</a> ex. Integer eu tincidunt justo, hendrerit dictum ex. Morbi nunc augue, interdum sed mattis at, elementum sit amet leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras interdum enim massa, vitae auctor sapien mollis nec. Donec purus enim, euismod in pretium eu, sollicitudin vitae lacus. Aliquam hendrerit at nisi eu porta. Sed pulvinar, neque vel pellentesque porttitor, leo diam venenatis nisl, quis imperdiet felis neque nec tellus. Duis non ligula orci. Donec sit amet luctus felis. Suspendisse metus purus, tristique facilisis sagittis id, consectetur sit amet quam.</p>
+                <div class="odpoved">
+                    <a href="#" class="">Odpovedať</a>
+                    <a href="#" class="plus">↑ 24</a>
+                    <a href="#" class="minus">↓ 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="sekcia obmedzovac_sekcie">
+            <p>©Batat</p>
+        </div>
+    </footer>
+</body>
+</html>

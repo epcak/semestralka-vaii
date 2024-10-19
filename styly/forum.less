@@ -1,0 +1,69 @@
+@import "definicie";
+
+.prva_sekcia {
+  h1 {
+    text-align: center;
+  }
+}
+
+.forum_primarna_sekcia {
+  background-color: @forumFarbaPozadia;
+  color: @primarnaFarbaTextu;
+}
+
+.forum_sekundarna_sekcia {
+  h2 {
+    text-align: center;
+  }
+  h2, h3 {
+    color: @forumFarbaPozadia;
+  }
+  a {
+    color: @forumFarbaPozadia;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+      text-decoration: wavy overline;
+    }
+  }
+}
+
+.nacitat_dalsie {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.polozka_fora {
+  padding: 10px;
+}
+
+.forum_sekundarna_sekcia {
+  padding-top: 0;
+}
+
+.polozka_fora:nth-child(even) {
+  background-color: rgba(@forumFarbaPozadia, 0.1);
+}
+
+.odpoved a {
+  &:hover {
+    text-decoration: none;
+  }
+  &:nth-child(1) {
+    float: right;
+    &:hover {
+      text-decoration: wavy overline;
+    }
+  }
+}
+
+.citacia {
+  padding: 10px;
+  background-color: rgba(black, 0.1);
+}
+
+@media only screen and (max-width: 650px) {
+  .forum_sekundarna_sekcia h3 {
+    text-align: center;
+  }
+}
