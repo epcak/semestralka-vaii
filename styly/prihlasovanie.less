@@ -1,0 +1,56 @@
+@import "definicie";
+
+/* Kod na pridanie fontu z: https://rsms.me/inter/ */
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+/* Koniec kodu na pridanie fontu */
+
+body {
+  height: 100%;
+}
+
+.prihlasovacia_sekcia {
+  text-align: center;
+  form {
+    label, input, button {
+      display: block;
+      margin: 10px auto;
+    }
+    input, button {
+      border: none;
+      background-color: @primarnaFarbaPozadia;
+      color: @primarnaFarbaTextu;
+      border-radius: 10px;
+    }
+    input {
+      padding: 8px 15px;
+    }
+    button {
+      cursor: pointer;
+      font-weight: bold;
+      padding: 10px 20px;
+      &:hover {
+        filter: brightness(85%);
+        transition-duration: 0.3s;
+      }
+    }
+  }
+  p {
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      color: @primarnaFarbaPozadia;
+      &:hover {
+        text-decoration: wavy overline;
+      }
+    }
+  }
+  img {
+    filter: saturate(1000%);
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prihlásenie sa</title>
+  <link rel="stylesheet/less" href="styly/prihlasovanie.less">
+  <!-- Kod na prekladac less z: https://lesscss.org/-->
+  <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+  <!-- Koniec kodu na prekladac -->
+  <!-- Kod na pridanie fontu z: https://rsms.me/inter/ -->
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <!-- Koniec kodu na pridanie fontu -->
+</head>
+<body>
+  <div class="prihlasovacia_sekcia">
+    <a href="index.html"><img src="obrazky/logo.png" alt="logo" class="logo_webu"></a>
+    <h1>Prihlásiť sa</h1>
+    <form action="prihlasovanie.html">
+      <label for="uzivatelske_meno">Užívateľské meno / email</label>
+      <input type="text" id="uzivatelske_meno">
+      <label for="heslo">Heslo</label>
+      <input type="password" id="heslo">
+      <button type="submit">Prihlásiť sa</button>
+    </form>
+    <p>Chcete sa radšej <a href="registrovanie.html">registrovať</a>?</p>
+  </div>
+</body>
+</html>
