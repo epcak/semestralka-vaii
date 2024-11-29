@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prihlásenie sa</title>
-  <link rel="stylesheet/less" href="styly/prihlasovanie.less">
+  <link rel="stylesheet/less" href="../static/styly/prihlasovanie.less">
   <!-- Kod na prekladac less z: https://lesscss.org/-->
   <script src="https://cdn.jsdelivr.net/npm/less" ></script>
   <!-- Koniec kodu na prekladac -->
@@ -15,16 +15,19 @@
 </head>
 <body>
   <div class="prihlasovacia_sekcia">
-    <a href="index.html"><img src="obrazky/logo.png" alt="logo" class="logo_webu"></a>
+    <a href="/"><img src="../static/obrazky/logo.png" alt="logo" class="logo_webu"></a>
     <h1>Prihlásiť sa</h1>
-    <form action="prihlasovanie.html">
-      <label for="uzivatelske_meno">Užívateľské meno / email</label>
-      <input type="text" id="uzivatelske_meno">
+    <form action="prihlasovanie">
+      <label  for="uzivatelske_meno">Užívateľské meno / email</label>
+      <input type="text" id="uzivatelske_meno" name="meno" required>
       <label for="heslo">Heslo</label>
-      <input type="password" id="heslo">
+      <input type="password" id="heslo" name="heslo" required>
       <button type="submit">Prihlásiť sa</button>
     </form>
-    <p>Chcete sa radšej <a href="registrovanie.html">registrovať</a>?</p>
+    <p>Chcete sa radšej <a href="registrovanie">registrovať</a>?</p>
+    {% if neuspesne %}
+    <p style="color: red">Meno a/alebo heslo je nesprávne</p>
+    {% endif %}
   </div>
 </body>
 </html>

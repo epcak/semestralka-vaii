@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrácia</title>
-    <link rel="stylesheet/less" href="styly/prihlasovanie.less">
+    <link rel="stylesheet/less" href="../static/styly/prihlasovanie.less">
     <!-- Kod na prekladac less z: https://lesscss.org/-->
     <script src="https://cdn.jsdelivr.net/npm/less" ></script>
     <!-- Koniec kodu na prekladac -->
@@ -15,20 +15,23 @@
 </head>
 <body>
 <div class="prihlasovacia_sekcia">
-    <a href="index.html"><img src="obrazky/logo.png" alt="logo" class="logo_webu"></a>
+    <a href="/"><img src="../static/obrazky/logo.png" alt="logo" class="logo_webu"></a>
     <h1>Registrácia</h1>
-    <form action="registrovanie.html">
+    <form action="registrovanie">
         <label for="email">Email</label>
-        <input type="email" id="email">
+        <input type="email" id="email" name="email" required>
         <label for="uzivatelske_meno">Užívateľské meno</label>
-        <input type="text" id="uzivatelske_meno">
+        <input type="text" id="uzivatelske_meno" name="meno" required>
         <label for="heslo">Heslo</label>
-        <input type="password" id="heslo">
+        <input type="password" id="heslo" name="heslo" required>
         <label for="opakovane_heslo">Opakované heslo</label>
-        <input type="password" id="opakovane_heslo">
+        <input type="password" id="opakovane_heslo" required>
         <button type="submit">Prihlásiť sa</button>
     </form>
-    <p>Chcete sa radšej <a href="prihlasovanie.html">prihlásiť</a>?</p>
+    <p>Chcete sa radšej <a href="prihlasovanie">prihlásiť</a>?</p>
+    {% if neuspesne %}
+    <p style="color: red">{{chyba}}</p>
+    {% endif %}
 </div>
 </body>
 </html>

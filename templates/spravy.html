@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <link rel="stylesheet/less" href="styly/zakladny.less">
-    <link rel="stylesheet/less" href="styly/nahlad_spravy.less">
-    <link rel="stylesheet/less" href="styly/spravy.less">
+    <link rel="stylesheet/less" href="../static/styly/zakladny.less">
+    <link rel="stylesheet/less" href="../static/styly/nahlad_spravy.less">
+    <link rel="stylesheet/less" href="../static/styly/spravy.less">
     <!-- Kod na prekladac less z: https://lesscss.org/-->
     <script src="https://cdn.jsdelivr.net/npm/less" ></script>
     <!-- Koniec kodu na prekladac -->
@@ -14,23 +14,27 @@
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- Koniec kodu na pridanie fontu -->
-    <script src="skripty/navigacia_burger.js"></script>
+    <script src="../static/skripty/navigacia_burger.js"></script>
 </head>
 <body>
     <div class="header_wrapper">
         <header>
             <nav>
                 <ul>
-                    <li class="logo_webu"><a href="index.html"><img src="obrazky/logo.png" alt="logo webu"></a></li>
-                    <li class="menu_burger"><img src="obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
-                    <li class="navigacia_prava konto_polozky_menu"><a href="prihlasovanie.html">Odhlásiť sa</a></li>
-                    <li class="navigacia_prava konto_polozky_menu"><a href="konto.html">Konto</a></li>
-                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy.html">Správy</a></li>
-                    <li class="skryte_v_menu"><a href="#">Návody</a></li>
-                    <li class="skryte_v_menu"><a href="forum.html">Fórum</a></li>
-                    <li class="skryte_v_menu"><a href="#">Blogy</a></li>
+                    <li class="logo_webu"><a href="index.html"><img src="../static/obrazky/logo.png" alt="logo webu"></a></li>
+                    <li class="menu_burger"><img src="../static/obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
+                    {% if prihlaseny %}
+                    <li class="navigacia_prava konto_polozky_menu"><a href="odhlasit">Odhlásiť sa</a></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="konto">Konto</a></li>
+                    {% else %}
+                    <li class="navigacia_prava konto_polozky_menu"><a href="prihlasovanie">Prihlásiť sa</a></li>
+                    {% endif %}
+                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy">Správy</a></li>
+                    <li class="skryte_v_menu"><a href="navody">Návody</a></li>
+                    <li class="skryte_v_menu"><a href="forum">Fórum</a></li>
+                    <li class="skryte_v_menu"><a href="blogy">Blogy</a></li>
                     <li class="vyhladavanie skryte_v_menu navigacia_prava">
-                        <form action="vyhladavenie.html">
+                        <form action="vyhladavenie">
                             <label for="hladanie">Vyhladavanie</label>
                             <input type="search" id="hladanie" name="q">
                             <button type="submit">Hľadať</button>
@@ -57,7 +61,7 @@
         <div class="obmedzovac_sekcie">
             <h2 class="nazov_kategorie">Nazov kategorie</h2>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -66,7 +70,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -75,7 +79,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -92,7 +96,7 @@
         <div class="obmedzovac_sekcie">
             <h2 class="nazov_kategorie">Nazov kategorie</h2>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -101,7 +105,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -110,7 +114,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -127,7 +131,7 @@
         <div class="obmedzovac_sekcie">
             <h2 class="nazov_kategorie">Nazov kategorie</h2>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -136,7 +140,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">
@@ -145,7 +149,7 @@
                 </div>
             </div>
             <div class="stredna_sprava sprava">
-                <a href="sprava.html"><img src="obrazky/testovaci.png" alt="obr"></a>
+                <a href="sprava.html"><img src="../static/obrazky/testovaci.png" alt="obr"></a>
                 <h2><a href="sprava.html">Názov správy</a></h2>
                 <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Vitae volutpat proin ridiculus viverra rutrum aliquet. Nunc litora venenatis placerat, suscipit venenatis pharetra dapibus! Porttitor erat vitae integer a viverra. Est pretium ligula enim condimentum leo facilisis. Mus ornare vel lacinia mattis erat nibh quam. Cras parturient mattis mauris ex; nullam natoque interdum hac. Tortor porta non, eros suspendisse natoque litora vulputate fames.</p>
                 <div class="sprava_tlacitka">

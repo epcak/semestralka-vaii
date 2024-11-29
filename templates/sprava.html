@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Názov správy</title>
-    <link rel="stylesheet/less" href="styly/zakladny.less">
-    <link rel="stylesheet/less" href="styly/sprava.less">
+    <link rel="stylesheet/less" href="../static/styly/zakladny.less">
+    <link rel="stylesheet/less" href="../static/styly/sprava.less">
     <!-- Kod na prekladac less z: https://lesscss.org/-->
     <script src="https://cdn.jsdelivr.net/npm/less" ></script>
     <!-- Koniec kodu na prekladac -->
@@ -13,23 +13,27 @@
     <link rel="preconnect" href="https://rsms.me/">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- Koniec kodu na pridanie fontu -->
-    <script src="skripty/navigacia_burger.js"></script>
+    <script src="../static/skripty/navigacia_burger.js"></script>
 </head>
 <body>
     <div class="header_wrapper">
         <header>
             <nav>
                 <ul>
-                    <li class="logo_webu"><a href="index.html"><img src="obrazky/logo.png" alt="logo webu"></a></li>
-                    <li class="menu_burger"><img src="obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
-                    <li class="navigacia_prava konto_polozky_menu"><a href="prihlasovanie.html">Odhlásiť sa</a></li>
-                    <li class="navigacia_prava konto_polozky_menu"><a href="konto.html">Konto</a></li>
-                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy.html">Správy</a></li>
-                    <li class="skryte_v_menu"><a href="#">Návody</a></li>
-                    <li class="skryte_v_menu"><a href="forum.html">Fórum</a></li>
-                    <li class="skryte_v_menu"><a href="#">Blogy</a></li>
+                    <li class="logo_webu"><a href="index.html"><img src="../static/obrazky/logo.png" alt="logo webu"></a></li>
+                    <li class="menu_burger"><img src="../static/obrazky/ikony/menu.png" alt="menu ikona" onclick="burgerNavigaciaTlacitko()"></li>
+                    {% if prihlaseny %}
+                    <li class="navigacia_prava konto_polozky_menu"><a href="odhlasit">Odhlásiť sa</a></li>
+                    <li class="navigacia_prava konto_polozky_menu"><a href="konto">Konto</a></li>
+                    {% else %}
+                    <li class="navigacia_prava konto_polozky_menu"><a href="prihlasovanie">Prihlásiť sa</a></li>
+                    {% endif %}
+                    <li class="skryte_v_menu" id="prve_skryte"><a href="spravy">Správy</a></li>
+                    <li class="skryte_v_menu"><a href="navody">Návody</a></li>
+                    <li class="skryte_v_menu"><a href="forum">Fórum</a></li>
+                    <li class="skryte_v_menu"><a href="blogy">Blogy</a></li>
                     <li class="vyhladavanie skryte_v_menu navigacia_prava">
-                        <form action="vyhladavenie.html">
+                        <form action="vyhladavenie">
                             <label for="hladanie">Vyhladavanie</label>
                             <input type="search" id="hladanie" name="q">
                             <button type="submit">Hľadať</button>
@@ -48,13 +52,13 @@
             <p>Integer non sem <a href="#">lorem</a>. Quisque sed erat tristique, convallis ligula vitae, interdum tortor. Aenean egestas elementum erat fermentum lobortis. <a href="#">Morbi</a> vel est et ligula tincidunt congue. Sed a mi tellus. Cras id tristique leo. Pellentesque semper purus a laoreet gravida. Vestibulum sodales id sapien eget euismod. Ut quis erat tristique, imperdiet quam eget, pharetra neque. Duis imperdiet diam at nibh viverra, eget pulvinar ipsum semper. <a href="#">Integer</a> laoreet, eros vel feugiat malesuada, mauris libero eleifend ligula, consectetur pharetra massa erat eget tellus.</p>
             <p>Nullam auctor condimentum eleifend. Nulla lobortis mauris vel ex semper dignissim. Quisque venenatis at mauris id sollicitudin. In id nunc in ipsum euismod gravida. Nulla dignissim feugiat nulla ac suscipit. Ut pellentesque, tellus non porttitor mollis, orci augue finibus urna, ultricies elementum ante felis quis neque. Phasellus ut pharetra sem. Etiam ut orci felis. Nullam sit amet enim vel nisl rhoncus varius. Integer cursus eros et nisi placerat auctor.</p>
             <p>Nulla id pretium massa. Vivamus nec est vel metus euismod accumsan. Duis scelerisque nunc vitae lectus blandit sagittis. Sed vitae tempor risus. Nunc facilisis, arcu et gravida dictum, arcu nibh imperdiet felis, nec placerat velit tortor eget lorem. Integer efficitur risus vel sagittis elementum. Proin vel nunc consectetur diam commodo placerat. Maecenas egestas, nulla id suscipit ultrices, nulla nisl malesuada neque, nec ultricies quam sapien quis velit. Fusce non aliquet justo. Nulla eu est gravida, porta velit vitae, cursus lectus. Vivamus id nisi quis odio maximus elementum aliquam vitae justo. Praesent tempus, ante ac convallis cursus, nisl libero iaculis nisi, quis posuere enim orci ut nibh. Nulla vestibulum et nisi vel viverra. Mauris hendrerit, elit id rhoncus vehicula, erat risus aliquam magna, vitae pellentesque nibh tortor eu odio.</p>
-            <img src="obrazky/testovaci.png" alt="obrazok obsiahnuty v texte clanku">
+            <img src="../static/obrazky/testovaci.png" alt="obrazok obsiahnuty v texte clanku">
             <p>Donec convallis rhoncus est, a fermentum diam mattis tristique. Morbi convallis nulla et nulla suscipit, id ornare libero ullamcorper. Etiam consequat, purus ac commodo viverra, urna arcu suscipit dolor, vitae faucibus ligula purus id ligula. Proin dignissim neque a eros ultricies, eget pharetra mi faucibus. Vestibulum id feugiat felis. Fusce vitae enim faucibus tellus efficitur efficitur. In mattis vel ex id ultrices. Cras auctor diam sit amet nisl sollicitudin hendrerit. Sed eleifend tortor eget massa cursus tincidunt. Mauris fringilla neque a erat dignissim, quis rutrum leo commodo. Phasellus non lorem et augue convallis condimentum quis sit amet quam. Nam iaculis non enim in viverra. Nulla scelerisque vulputate nulla sit amet lobortis. Sed egestas urna vitae augue aliquet tincidunt. Fusce iaculis sapien ipsum, quis maximus urna tincidunt a.</p>
             <p>Maecenas vitae elit faucibus sapien facilisis tempus. Etiam ut elit euismod, condimentum massa nec, condimentum elit. Fusce at laoreet leo. Nam ullamcorper elit id mi ultricies euismod. Maecenas placerat aliquet purus in dapibus. Suspendisse et blandit elit. In quis egestas mauris.</p>
             <p>Ut ornare volutpat libero at vehicula. Vestibulum blandit dictum sollicitudin. Sed lacus felis, luctus in libero ut, feugiat vehicula felis. Phasellus neque arcu, sodales sit amet purus eu, consequat scelerisque velit. Praesent fermentum dui tristique leo convallis sollicitudin. Maecenas est nisl, sagittis sed semper et, luctus in lectus. Maecenas iaculis, enim et rutrum auctor, urna sem pharetra urna, ac viverra mi neque sit amet libero. Maecenas et metus vitae dui condimentum aliquet. Praesent tempor scelerisque justo et egestas. In vitae eros varius, finibus erat vitae, hendrerit augue. Aenean id justo sed nunc viverra consectetur. Vivamus quis mi in massa ullamcorper sagittis in vel neque.</p>
             <p>In <span class="sikmy_text">hac habitasse platea dictumst</span>. <span class="preciarknuty_text">Nam imperdiet risus magna</span>, in tristique lorem tincidunt molestie. Etiam cursus risus sed fringilla dapibus. Quisque id ligula dolor. Integer non magna in ex cursus fermentum ut id felis. Donec volutpat mattis ipsum. Sed ut sem risus. Curabitur eu semper lectus, ac varius metus. Vivamus viverra interdum enim, sit amet molestie justo tempus sed. Quisque turpis ex, accumsan ut elementum pellentesque, pulvinar sed tortor. Integer eget eleifend enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec maximus, neque non lobortis fringilla, arcu erat hendrerit sem, sit amet volutpat libero nisl sit amet tellus.</p>
             <video controls>
-                <source src="obrazky/testovacie_video.mp4" type="video/mp4">
+                <source src="../static/obrazky/testovacie_video.mp4" type="video/mp4">
             </video>
             <p>Nam tincidunt nisl sed ipsum cursus aliquam. Nam in massa rutrum odio iaculis tincidunt. Quisque id sagittis libero, non blandit ante. Nunc vitae metus consectetur, ultricies velit in, pulvinar lorem. Suspendisse congue dapibus ipsum nec auctor. Etiam eleifend ultrices molestie. Praesent dictum vel nibh vitae fringilla. Quisque ac tempor nibh. Vestibulum interdum convallis risus, eu egestas lorem consequat non. Praesent vitae commodo ipsum. Duis lobortis tincidunt consectetur. Nullam eget ex sagittis, placerat nibh quis, ultricies eros.</p>
             <p>Suspendisse potenti. Fusce pharetra venenatis ultrices. Morbi nunc nisi, suscipit sit amet risus sed, venenatis tempus nunc. Curabitur vitae faucibus tortor, vel facilisis ex. Quisque cursus, ex a tempus laoreet, orci felis mollis turpis, ut bibendum risus lectus dapibus arcu. Pellentesque nec malesuada felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque commodo turpis lorem, ac imperdiet nisl luctus vel. Sed a venenatis mauris, a elementum massa. Sed sit amet sollicitudin nisl. Etiam eget tortor auctor turpis sollicitudin laoreet. Nulla nulla enim, congue sit amet dolor in, lacinia pharetra massa. Sed tempus eu sem vitae ullamcorper.</p>
