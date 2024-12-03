@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, url_for, redirect, make_response
+from flask import Flask, render_template, request, url_for, redirect, make_response, jsonify
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from markupsafe import escape
+
+import spravakonta
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -19,10 +21,13 @@ def odhlasit():
 @app.route('/prihlasovanie', methods=['GET'])
 def prihlasovanie():
     if request.method == 'GET':
-        if len(request.args) == 2:
+        if len(request.args) == 4:
             try:
-                meno = request.args.get('meno')
-                heslo = request.args.get('heslo')
+                request.get_data()
+                data = dict()
+                data["meno"] = request.args.get('meno')
+                data["heslo"] = request.args.get('heslo')
+                data["trvaly"] = request.args.get('trvaly')
                 hl_stranka = make_response(redirect(url_for('index')))
                 hl_stranka.set_cookie('SessionID', "test", max_age=30*24*60*60)
                 return hl_stranka
