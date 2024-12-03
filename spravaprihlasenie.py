@@ -1,5 +1,14 @@
 import spravcadatabaze
 
+db = None
+vyhladavac = None
+
+def prirad_db(databaza: spravcadatabaze.Databaza):
+    global db, vyhladavac
+    db = databaza
+    vyhladavac = spravcadatabaze.VyhladavacDB(db)
+
+
 class Registracia:
     def __init__(self):
         pass
@@ -29,8 +38,9 @@ class KontrolaHesla:
     def __init__(self, bcrypt):
         self.bcrypt = bcrypt
 
-    def kontrola_hesla(self, databaza: spravcadatabaze.Databaza, db_id: int, heslo: str) -> bool:
-         return self.bcrypt.checkpw(heslo, spravcadatabaze.VyhladavacDB(databaza).ziskaj_heslo(db_id))
+    def kontrola_hesla(self, db_id: int, heslo: str) -> bool:
+        global vyhladavac
+        return self.bcrypt.checkpw(heslo, vyhladavac.ziskaj_heslo(db_id))
 
 
 class Session:
