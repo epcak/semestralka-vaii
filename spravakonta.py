@@ -21,7 +21,7 @@ class Konto:
 
     def kontrola_heslo(self, heslo: str) -> bool:
         if self.db_id is not None:
-            spravaprihlasenie.KontrolaHesla(self.bcrypt).kontrola_hesla(None, self.db_id, heslo)
+            spravaprihlasenie.KontrolaHesla(self.bcrypt).kontrola_hesla(db_id=self.db_id, heslo=heslo)
         return False
 
     def ziskanie_zoznamu_clankov(self):

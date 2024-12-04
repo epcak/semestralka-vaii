@@ -1,5 +1,5 @@
 from sqlalchemy.orm import declarative_base, sessionmaker
-from sqlalchemy import select
+from sqlalchemy import select, desc
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy import create_engine
 
@@ -7,7 +7,7 @@ Base = declarative_base()
 
 class Uzivatel(Base):
     __tablename__ = 'uzivatel'
-    user_id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, primary_key=True, autoincrement=True)
     meno = Column(String, nullable=False, unique=True)
     email = Column(String, nullable=False, unique=True)
     heslo = Column(String, nullable=False)
@@ -16,14 +16,15 @@ class Uzivatel(Base):
 
 class Relacia(Base):
     __tablename__ = 'relacia'
-    session_id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, nullable=False)
+    session_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, ForeignKey('uzivatel.user_id'), nullable=False)
     expires = Column(DateTime)
+    vytvorene = Column(DateTime)
 
 
 class Clanok(Base):
     __tablename__ = 'clanok'
-    id_clanku = Column(Integer, primary_key=True)
+    id_clanku = Column(Integer, primary_key=True, autoincrement=True)
     typ = Column(String, nullable=False)
     titulok = Column(String, nullable=False)
     datum_vytvorenia = Column(DateTime, nullable=False)
@@ -49,7 +50,7 @@ class ParagrafMedium(Base):
 
 class Komentar(Base):
     __tablename__ = 'komentar'
-    id_komentar = Column(Integer, primary_key=True)
+    id_komentar = Column(Integer, primary_key=True, autoincrement=True)
     typ_komentovaneho = Column(Integer, nullable=False)
     id_komentovaneho = Column(Integer, nullable=False)
     komentator = Column(Integer, ForeignKey('uzivatel.user_id'), nullable=False)
@@ -73,7 +74,7 @@ class NahrateMedia(Base):
 
 class Forum(Base):
     __tablename__ = 'forum'
-    id_forum = Column(Integer, primary_key=True)
+    id_forum = Column(Integer, primary_key=True, autoincrement=True)
     nazov = Column(String, nullable=False)
     text = Column(String, nullable=False)
 
@@ -104,6 +105,12 @@ class Databaza:
             with self.dbsession() as relacia:
                 return relacia.execute(dotaz)
 
+    def pridaj_do_databazy(self, na_pridanie: list):
+        if self.dbengine is not None:
+            with self.dbsession() as relacia:
+                relacia.add_all(na_pridanie)
+                relacia.commit()
+
 
 class VyhladavacDB:
     def __init__(self, databaza: Databaza):
@@ -125,7 +132,7 @@ class VyhladavacDB:
             dotaz = select(Uzivatel).filter_by(email=email)
         try:
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0].heslo
+            return odpoved.all()[0].user_id
         except:
             return None
 
@@ -158,6 +165,14 @@ class VyhladavacDB:
         try:
             odpoved = self.databaza.vykonaj(dotaz)
             return odpoved.all()[0]
+        except:
+            return None
+
+    def ziskaj_najnovsiu_relaciu(self, uzivatel: int):
+        dotaz = select(Relacia).filter_by(user_id=uzivatel).order_by(desc(Relacia.vytvorene))
+        try:
+            odpoved = self.databaza.vykonaj(dotaz)
+            return odpoved.all()[0].session_id
         except:
             return None
 
