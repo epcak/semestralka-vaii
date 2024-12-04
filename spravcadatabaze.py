@@ -1,3 +1,4 @@
+from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import select, desc
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
@@ -102,8 +103,10 @@ class Databaza:
 
     def vykonaj(self, dotaz):
         if self.dbengine is not None:
+            odpoved = None
             with self.dbsession() as relacia:
-                return relacia.execute(dotaz)
+                odpoved = relacia.execute(dotaz).all()
+            return odpoved
 
     def pridaj_do_databazy(self, na_pridanie: list):
         if self.dbengine is not None:
@@ -120,8 +123,8 @@ class VyhladavacDB:
         try:
             dotaz = select(Uzivatel).filter_by(user_id=db_id)
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0].heslo
-        except:
+            return odpoved[0][0].heslo
+        except NoResultFound:
             return None
 
     def ziskaj_uzivatela(self, meno: str = "", email: str = ""):
@@ -131,25 +134,25 @@ class VyhladavacDB:
         elif email != "":
             dotaz = select(Uzivatel).filter_by(email=email)
         try:
-            odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0].user_id
-        except:
+            odpoved = self.databaza.vykonaj(dotaz)[0][0]
+            return odpoved
+        except IndexError:
             return None
 
     def ziskaj_info_session(self, sid: int):
         try:
             dotaz = select(Relacia).filter_by(session_id=sid)
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0]
-        except:
+            return odpoved[0][0]
+        except NoResultFound:
             return None
 
     def ziskaj_clanky(self, db_id: int, typ="sprava"):
         try:
             dotaz = select(Clanok).filter_by(autor=db_id, typ=typ)
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()
-        except:
+            return odpoved[0][0]
+        except NoResultFound:
             return None
 
     def ziskaj_komentare(self, typ_komentovaneho: str, id_komentovaneho: int):
@@ -164,16 +167,16 @@ class VyhladavacDB:
             dotaz = select(Forum).filter_by(id_forum=id_komentovaneho)
         try:
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0]
-        except:
+            return odpoved[0]
+        except NoResultFound:
             return None
 
     def ziskaj_najnovsiu_relaciu(self, uzivatel: int):
         dotaz = select(Relacia).filter_by(user_id=uzivatel).order_by(desc(Relacia.vytvorene))
         try:
             odpoved = self.databaza.vykonaj(dotaz)
-            return odpoved.all()[0].session_id
-        except:
+            return odpoved[0][0].session_id
+        except NoResultFound:
             return None
 
     def ziskaj_paragrafy(self, id_clanku: int):
@@ -181,10 +184,10 @@ class VyhladavacDB:
         try:
             dotaztext = select(Paragraf).filter_by(id_clanku=id_clanku)
             dotazmedium = select(ParagrafMedium).filter_by(id_clanku=id_clanku)
-            paragrafy.append(self.databaza.vykonaj(dotaztext).all())
-            paragrafy.append(self.databaza.vykonaj(dotazmedium).all())
+            paragrafy.append(self.databaza.vykonaj(dotaztext)[0])
+            paragrafy.append(self.databaza.vykonaj(dotazmedium)[0])
             return paragrafy
-        except:
+        except NoResultFound:
             return None
 
 

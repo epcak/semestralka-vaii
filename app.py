@@ -4,9 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from markupsafe import escape
 
 import spravakonta
+import spravaprihlasenie
+import spravcadatabaze
 
 app = Flask(__name__)
-bcrypt = Bcrypt(app)
+
+db = spravcadatabaze.Databaza()
+db.otvor_databazu()
 
 @app.route('/')
 def index():
@@ -21,19 +25,31 @@ def odhlasit():
 @app.route('/prihlasovanie', methods=['GET'])
 def prihlasovanie():
     if request.method == 'GET':
-        if len(request.args) == 4:
-            try:
-                request.get_data()
-                data = dict()
-                data["meno"] = request.args.get('meno')
-                data["heslo"] = request.args.get('heslo')
-                data["trvaly"] = request.args.get('trvaly')
-                hl_stranka = make_response(redirect(url_for('index')))
-                hl_stranka.set_cookie('SessionID', "test", max_age=30*24*60*60)
-                return hl_stranka
-            except:
-                return redirect(url_for('index'))
         return render_template('prihlasovanie.html')
+
+
+@app.route('/prihlas', methods=['POST'])
+def prihlas():
+    na_odoslanie = {
+        "uspesnost": False,
+        "sid": 0
+    }
+    if len(request.args) == 3 or len(request.args) == 2:
+        data = dict()
+        try:
+            request.get_data()
+            data["meno"] = request.args.get('meno')
+            data["heslo"] = request.args.get('heslo')
+            if len(request.args) == 3:
+                data["trvaly"] = request.args.get('trvaly')
+        except KeyError:
+            return jsonify(na_odoslanie)
+        prihlasenie = spravaprihlasenie.Prihlasenie()
+        if prihlasenie.prihlasenie(data):
+            na_odoslanie["sid"] = prihlasenie.ziskanie_session_id()
+            na_odoslanie["uspesnost"] = True
+
+    return jsonify(na_odoslanie)
 
 @app.route('/registrovanie')
 def registrovanie():

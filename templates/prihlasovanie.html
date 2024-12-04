@@ -12,22 +12,23 @@
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <!-- Koniec kodu na pridanie fontu -->
+  <script src="../static/skripty/prihlasovanie.js"></script>
 </head>
 <body>
   <div class="prihlasovacia_sekcia">
     <a href="/"><img src="../static/obrazky/logo.png" alt="logo" class="logo_webu"></a>
     <h1>Prihlásiť sa</h1>
-    <form action="prihlasovanie">
+    <form action="javascript:overPrihlasenie()">
       <label  for="uzivatelske_meno">Užívateľské meno / email</label>
       <input type="text" id="uzivatelske_meno" name="meno" required>
       <label for="heslo">Heslo</label>
       <input type="password" id="heslo" name="heslo" required>
       <button type="submit">Prihlásiť sa</button>
+      <label for="trvalo">Trvalé prihlásenie?</label>
+      <input type="checkbox" name="trvalo" id="trvalo">
     </form>
     <p>Chcete sa radšej <a href="registrovanie">registrovať</a>?</p>
-    {% if neuspesne %}
-    <p style="color: red">Meno a/alebo heslo je nesprávne</p>
-    {% endif %}
+    <p id="chyba" style="color: red; visibility: hidden">Meno a/alebo heslo je nesprávne</p>
   </div>
 </body>
 </html>

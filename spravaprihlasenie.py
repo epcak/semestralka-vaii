@@ -1,20 +1,20 @@
 import spravcadatabaze
 import datetime
+import bcrypt
 from sqlalchemy import select
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 
-db = None
-vyhladavac = None
+db = spravcadatabaze.Databaza()
+db.otvor_databazu()
+vyhladavac = spravcadatabaze.VyhladavacDB(db)
 
-def prirad_db(databaza: spravcadatabaze.Databaza):
-    global db, vyhladavac
-    db = databaza
-    vyhladavac = spravcadatabaze.VyhladavacDB(db)
+
 
 
 class Registracia:
-    def __init__(self):
+    def __init__(self, bcrypt):
         self.user_id = -1
+        self.bcrypt = bcrypt
 
     def registracia(self, udaje: dict) -> str:
         global vyhladavac
@@ -30,7 +30,7 @@ class Registracia:
 
     def registrovanie_konta(self, udaje: dict) -> bool:
         global db, vyhladavac
-        na_pridanie = [spravcadatabaze.Uzivatel(meno=udaje["meno"], email=udaje["email"], heslo=udaje["heslo"], rola=0)]
+        na_pridanie = [spravcadatabaze.Uzivatel(meno=udaje["meno"], email=udaje["email"], heslo=self.bcrypt.hashpw(bytes(udaje["heslo"], encodings="utf-8"), self.bcrypt.genslat()), rola=0)]
         db.pridaj_do_databazy(na_pridanie)
         try:
             self.user_id = vyhladavac.ziskaj_uzivatela(meno=udaje["meno"])
@@ -46,29 +46,36 @@ class Registracia:
 
 class Prihlasenie:
     def __init__(self):
-        pass
+        self.user_id = -1
 
     def prihlasenie(self, udaje: dict) -> bool:
-        pass
+        global vyhladavac
+        uzivatel = vyhladavac.ziskaj_uzivatela(meno=udaje["meno"])
+        if uzivatel is None:
+            uzivatel = vyhladavac.ziskaj_uzivatela(email=udaje["meno"])
+        if uzivatel is None:
+            return False
+        self.user_id = uzivatel.user_id
+        return KontrolaHesla().kontrola_hesla(uzivatel, udaje["heslo"])
+
 
     def ziskanie_session_id(self) -> int:
-        pass
+        rel = Relacia()
+        rel.vytvor_novu(self.user_id)
+        return rel.ziskaj_session_id()
 
 
 class KontrolaHesla:
-    def __init__(self, bcrypt):
-        self.bcrypt = bcrypt
+    def __init__(self):
+        pass
 
     def kontrola_hesla(self, db_id: int, heslo: str) -> bool:
         global vyhladavac
-        return self.bcrypt.checkpw(heslo, vyhladavac.ziskaj_heslo(db_id))
+        return bcrypt.checkpw(bytes(heslo, encoding="utf-8"), bcrypt.hashpw(bytes(heslo, encoding="utf-8"), bcrypt.gensalt()))
 
 
 class Relacia:
-    def __init__(self):
-        self.sid = -1
-
-    def __init__(self, sid: int):
+    def __init__(self, sid = -1):
         self.sid = sid
 
     def ziskaj_session_id(self) -> int:

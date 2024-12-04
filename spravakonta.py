@@ -1,8 +1,8 @@
 import spravaprihlasenie
+import bcrypt
 
 class Konto:
-    def __init__(self, bcrypt):
-        self.bcrypt = bcrypt
+    def __init__(self):
         self.meno = ''
         self.email = ''
         self.db_id = None
@@ -21,7 +21,7 @@ class Konto:
 
     def kontrola_heslo(self, heslo: str) -> bool:
         if self.db_id is not None:
-            spravaprihlasenie.KontrolaHesla(self.bcrypt).kontrola_hesla(db_id=self.db_id, heslo=heslo)
+            spravaprihlasenie.KontrolaHesla().kontrola_hesla(db_id=self.db_id, heslo=heslo)
         return False
 
     def ziskanie_zoznamu_clankov(self):
