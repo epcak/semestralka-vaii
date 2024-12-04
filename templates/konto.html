@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <!-- Koniec kodu na pridanie fontu -->
     <script src="../static/skripty/navigacia_burger.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+    <script src="../static/skripty/nastavenia_konta.js"></script>
 </head>
 <body>
     <div class="header_wrapper">
@@ -85,7 +87,7 @@
             <h2>Nastavenia účtu</h2>
             <div class="kategoria_nastavenia heslo">
                 <h3>Heslo</h3>
-                <form action="konto.html">
+                <form action="javascript:zmenaHesla()">
                     <label for="aktualne_heslo">Aktuálne heslo</label>
                     <input type="password" id="aktualne_heslo">
                     <label for="nove_heslo">Nové heslo</label>
@@ -97,7 +99,7 @@
             </div>
             <div class="kategoria_nastavenia udaje">
                 <h3>Osobné údaje</h3>
-                <form action="konto.html">
+                <form action="javascript:zmenaUdajov()">
                     <label for="uzivatelske_meno">Užívateľské meno</label>
                     <input type="text" id="uzivatelske_meno">
                     <label for="email">E-mail</label>
@@ -107,7 +109,7 @@
             </div>
             <div class="kategoria_nastavenia">
                 <h3>Odstránenie účtu</h3>
-                <form action="konto.html">
+                <form action="javascript:odstranenieUctu()">
                     <label for="heslo_odstranit">Aktuálne heslo</label>
                     <input type="password" id="heslo_odstranit">
                     <button type="submit">Odstrániť účet</button>

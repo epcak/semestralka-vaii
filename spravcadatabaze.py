@@ -120,6 +120,12 @@ class Databaza:
                 relacia.add(objekt)
                 relacia.commit()
 
+    def uprav(self, dotaz):
+        if self.dbengine is not None:
+            with self.dbsession() as relacia:
+                relacia.execute(dotaz)
+                relacia.commit()
+
 
 class VyhladavacDB:
     def __init__(self, databaza: Databaza):
@@ -133,12 +139,14 @@ class VyhladavacDB:
         except NoResultFound:
             return None
 
-    def ziskaj_uzivatela(self, meno: str = "", email: str = ""):
+    def ziskaj_uzivatela(self, meno: str = "", email: str = "", user_id: int = -1):
         dotaz = ""
         if meno != "":
             dotaz = select(Uzivatel).filter_by(meno=meno)
         elif email != "":
             dotaz = select(Uzivatel).filter_by(email=email)
+        elif user_id != -1:
+            dotaz = select(Uzivatel).filter_by(user_id=user_id)
         try:
             odpoved = self.databaza.vykonaj(dotaz)[0][0]
             return odpoved

@@ -80,20 +80,6 @@ def registruj():
 
 @app.route('/registrovanie')
 def registrovanie():
-    if len(request.args) == 3:
-        try:
-            meno = request.args.get('meno')
-            heslo = request.args.get('heslo')
-            email = request.args.get('email')
-            # todo registracia uzivatela
-            if True: # uspesna registracia
-                konto = make_response(redirect(url_for('konto')))
-                konto.set_cookie('SessionID', "test", max_age=30*24*60*60)
-                return konto
-            else:
-                return render_template('registrovanie.html', neuspesne=True, chyba='text chyby')
-        except:
-            redirect(url_for('registrovanie'))
     return render_template('registrovanie.html')
 
 @app.route('/konto')
@@ -135,3 +121,48 @@ def blog():
 @app.route('/blogy')
 def blogy():
     return redirect(url_for('index'))
+
+@app.route('/zmenahesla', methods=['POST'])
+def zmenahesla():
+    na_odoslanie = {
+        "uspesnost": False
+    }
+    request.get_data()
+    if len(request.args) == 3:
+        try:
+            data = dict()
+            data["sid"] = request.args.get('sid')
+            data["heslo"] = request.args.get('heslo')
+            data["nove"] = request.args.get('nove')
+        except KeyError:
+            return
+        ucet = spravakonta.Konto()
+        ucet.nacitaj_z_relacie(data["sid"])
+        if ucet.zmena_hesla(data['heslo'], data['nove']):
+            na_odoslanie["uspesnost"] = True
+
+    jsonify(na_odoslanie)
+
+@app.route('/odstranitucet', methods=['POST'])
+def odstranitucet():
+    na_odoslanie = {
+        "uspesnost": False
+    }
+    request.get_data()
+    if len(request.args) == 2:
+        try:
+            data = dict()
+            data["sid"] = request.args.get('sid')
+            data["heslo"] = request.args.get('heslo')
+        except KeyError:
+            return
+        ucet = spravakonta.Konto()
+        ucet.nacitaj_z_relacie(data["sid"])
+        if ucet.odstranenie_uctu(data["heslo"]):
+            na_odoslanie["uspesnost"] = True
+
+    jsonify(na_odoslanie)
+
+@app.route('/zmenaudajov', methods=['POST'])
+def zmenaudajov():
+    pass
