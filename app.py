@@ -34,10 +34,10 @@ def prihlas():
         "uspesnost": False,
         "sid": 0
     }
+    request.get_data()
     if len(request.args) == 3 or len(request.args) == 2:
         data = dict()
         try:
-            request.get_data()
             data["meno"] = request.args.get('meno')
             data["heslo"] = request.args.get('heslo')
             if len(request.args) == 3:
@@ -50,6 +50,33 @@ def prihlas():
             na_odoslanie["uspesnost"] = True
 
     return jsonify(na_odoslanie)
+
+@app.route('/registruj', methods=['POST'])
+def registruj():
+    na_odoslanie = {
+        "uspesnost": False,
+        "sid": 0,
+        "chyba": "Nastala chyba pri preberani dat"
+    }
+    request.get_data()
+    if len(request.args) == 3:
+        try:
+            data = dict()
+            data["meno"] = request.args.get('meno')
+            data["heslo"] = request.args.get('heslo')
+            data["email"] = request.args.get('email')
+        except KeyError:
+            return
+        registracia = spravaprihlasenie.Registracia()
+        odpoved = registracia.registracia(data)
+        if odpoved == "":
+            na_odoslanie["uspesnost"] = True
+            na_odoslanie["sid"] = registracia.ziskanie_session_id()
+            na_odoslanie["chyba"] = ""
+        else:
+            na_odoslanie["chyba"] = odpoved
+        return jsonify(na_odoslanie)
+
 
 @app.route('/registrovanie')
 def registrovanie():

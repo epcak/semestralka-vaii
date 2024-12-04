@@ -9,12 +9,9 @@ db.otvor_databazu()
 vyhladavac = spravcadatabaze.VyhladavacDB(db)
 
 
-
-
 class Registracia:
-    def __init__(self, bcrypt):
+    def __init__(self):
         self.user_id = -1
-        self.bcrypt = bcrypt
 
     def registracia(self, udaje: dict) -> str:
         global vyhladavac
@@ -26,14 +23,14 @@ class Registracia:
             if self.registrovanie_konta(udaje):
                 return ""
             else:
-                return "Nastala chyba"
+                return "Nastala chyba pri zadavani udajov do databazy"
 
     def registrovanie_konta(self, udaje: dict) -> bool:
         global db, vyhladavac
-        na_pridanie = [spravcadatabaze.Uzivatel(meno=udaje["meno"], email=udaje["email"], heslo=self.bcrypt.hashpw(bytes(udaje["heslo"], encodings="utf-8"), self.bcrypt.genslat()), rola=0)]
-        db.pridaj_do_databazy(na_pridanie)
+        na_pridanie = spravcadatabaze.Uzivatel(meno=udaje["meno"], email=udaje["email"], heslo=(bcrypt.hashpw(str(udaje["heslo"]).encode('utf-8'), bcrypt.gensalt())).decode('utf-8'), rola=0)
+        db.pridaj_jedne_objekt(na_pridanie)
         try:
-            self.user_id = vyhladavac.ziskaj_uzivatela(meno=udaje["meno"])
+            self.user_id = vyhladavac.ziskaj_uzivatela(meno=udaje["meno"]).user_id
             return True
         except:
             return False
@@ -56,7 +53,7 @@ class Prihlasenie:
         if uzivatel is None:
             return False
         self.user_id = uzivatel.user_id
-        return KontrolaHesla().kontrola_hesla(uzivatel, udaje["heslo"])
+        return KontrolaHesla().kontrola_hesla(uzivatel.user_id, udaje["heslo"])
 
 
     def ziskanie_session_id(self) -> int:
@@ -71,7 +68,8 @@ class KontrolaHesla:
 
     def kontrola_hesla(self, db_id: int, heslo: str) -> bool:
         global vyhladavac
-        return bcrypt.checkpw(bytes(heslo, encoding="utf-8"), bcrypt.hashpw(bytes(heslo, encoding="utf-8"), bcrypt.gensalt()))
+        hashnute = vyhladavac.ziskaj_heslo(db_id)
+        return bcrypt.checkpw(heslo.encode('utf-8'), hashnute.encode('utf-8'))
 
 
 class Relacia:
@@ -82,14 +80,11 @@ class Relacia:
         return self.sid
 
     def vytvor_novu(self, uzivatel: int, neexiprovat = False):
-        import spravcadatabaze
-        na_pridanie = []
+        global db, vyhladavac
         vytvorene = datetime.datetime.now()
         if neexiprovat:
-            na_pridanie.append(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene, expires=(datetime.datetime.now() + datetime.timedelta(days=30))))
+            db.pridaj_jedne_objekt(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene, expires=(datetime.datetime.now() + datetime.timedelta(days=30))))
         else:
-            na_pridanie.append(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene))
-        global db, vyhladavac
-        db.pridaj_do_databazy(na_pridanie)
+            db.pridaj_jedne_objekt(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene))
         self.sid = vyhladavac.ziskaj_najnovsiu_relaciu(uzivatel)
 

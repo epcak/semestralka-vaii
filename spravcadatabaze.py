@@ -114,6 +114,12 @@ class Databaza:
                 relacia.add_all(na_pridanie)
                 relacia.commit()
 
+    def pridaj_jedne_objekt(self, objekt):
+        if self.dbengine is not None:
+            with self.dbsession() as relacia:
+                relacia.add(objekt)
+                relacia.commit()
+
 
 class VyhladavacDB:
     def __init__(self, databaza: Databaza):
@@ -176,7 +182,7 @@ class VyhladavacDB:
         try:
             odpoved = self.databaza.vykonaj(dotaz)
             return odpoved[0][0].session_id
-        except NoResultFound:
+        except IndexError:
             return None
 
     def ziskaj_paragrafy(self, id_clanku: int):
