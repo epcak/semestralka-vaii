@@ -2,7 +2,11 @@ import spravaprihlasenie
 import spravcadatabaze
 import bcrypt
 from sqlalchemy import update, delete
+
+from spravaprihlasenie import vyhladavac
 from spravcadatabaze import Uzivatel
+
+from sqlalchemy.orm import declarative_base, sessionmaker
 
 
 
@@ -48,24 +52,39 @@ class Konto:
             return False
         db = spravaprihlasenie.db
         novoheslo = bcrypt.hashpw(nove.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        dotaz = update(Uzivatel).values({"heslo": novoheslo}).where(Uzivatel.user_id == self.db_id)
-        db.uprav(dotaz)
+        with db.dbsession() as relacia:
+            uzivatel = relacia.get(spravcadatabaze.Uzivatel, self.db_id)
+            uzivatel.heslo = novoheslo
+            relacia.commit()
         return True
 
     def zmena_emailu(self, email: str) -> bool:
+        uzivatel = spravaprihlasenie.vyhladavac.ziskaj_uzivatela(email=email)
+        if uzivatel is not None:
+            return False
+        with spravaprihlasenie.db.dbsession() as relacia:
+            uziv = relacia.get(spravcadatabaze.Uzivatel, self.db_id)
+            uziv.email = email
+            relacia.commit()
         return True
 
     def zmena_mena(self, meno: str) -> bool:
+        uzivatel = spravaprihlasenie.vyhladavac.ziskaj_uzivatela(meno=meno)
+        if uzivatel is not None:
+            return False
+        with spravaprihlasenie.db.dbsession() as relacia:
+            uziv = relacia.get(spravcadatabaze.Uzivatel, self.db_id)
+            uziv.meno = meno
+            relacia.commit()
         return True
 
-    def odstranenie_uctu(self, heslo: str) -> bool:
+    def odstranenie_uctu(self, heslo: str):
         db = spravaprihlasenie.db
-        vyhladavac = spravaprihlasenie.vyhladavac
         if self.db_id is None:
             return False
         if not spravaprihlasenie.KontrolaHesla().kontrola_hesla(db_id=self.db_id, heslo=heslo):
             return False
-        db.uprav(delete(spravcadatabaze.Uzivatel).where(spravcadatabaze.Uzivatel.user_id ==self.db_id))
+        db.odstran_uzivatela(self.db_id)
 
         self.meno = ''
         self.email = ''
@@ -73,7 +92,6 @@ class Konto:
         return True
 
     def nacitaj_z_relacie(self, sid: int):
-        db = spravaprihlasenie.db
         vyhladavac = spravaprihlasenie.vyhladavac
         user_id = vyhladavac.ziskaj_info_session(sid=sid).user_id
         uzivatel = vyhladavac.ziskaj_uzivatela(user_id=user_id)

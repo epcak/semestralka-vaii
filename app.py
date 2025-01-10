@@ -141,7 +141,7 @@ def zmenahesla():
         if ucet.zmena_hesla(data['heslo'], data['nove']):
             na_odoslanie["uspesnost"] = True
 
-    jsonify(na_odoslanie)
+    return jsonify(na_odoslanie)
 
 @app.route('/odstranitucet', methods=['POST'])
 def odstranitucet():
@@ -161,8 +161,29 @@ def odstranitucet():
         if ucet.odstranenie_uctu(data["heslo"]):
             na_odoslanie["uspesnost"] = True
 
-    jsonify(na_odoslanie)
+    return jsonify(na_odoslanie)
 
 @app.route('/zmenaudajov', methods=['POST'])
 def zmenaudajov():
-    pass
+    request.get_data()
+    if len(request.args) == 3:
+        data = dict()
+        try:
+            data["sid"] = request.args.get('sid')
+            data["meno"] = request.args.get('meno')
+            data["email"] = request.args.get('email')
+        except KeyError:
+            return
+        ucet = spravakonta.Konto()
+        ucet.nacitaj_z_relacie(data["sid"])
+        odpoved = ""
+        if data["meno"] != "":
+            odpovedane = ucet.zmena_mena(data["meno"])
+            if not odpovedane:
+                odpoved = "Nastala chyba pri aktualizácii mena. "
+        if data["email"] != "":
+            odpovedane = ucet.zmena_emailu(data["email"])
+            if not odpovedane:
+                odpoved += "Nastala chyba pri aktualizácii emailu."
+        return jsonify({"odpoved": odpoved})
+    return jsonify({"odpoved": "Nevhodne data"})

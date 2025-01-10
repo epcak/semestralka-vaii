@@ -1,3 +1,5 @@
+import random
+
 from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy import select, desc
@@ -8,7 +10,7 @@ Base = declarative_base()
 
 class Uzivatel(Base):
     __tablename__ = 'uzivatel'
-    user_id = Column(Integer, primary_key=True, autoincrement=True)
+    user_id = Column(Integer, primary_key=True)
     meno = Column(String, nullable=False, unique=True)
     email = Column(String, nullable=False, unique=True)
     heslo = Column(String, nullable=False)
@@ -17,7 +19,7 @@ class Uzivatel(Base):
 
 class Relacia(Base):
     __tablename__ = 'relacia'
-    session_id = Column(Integer, primary_key=True, autoincrement=True)
+    session_id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('uzivatel.user_id'), nullable=False)
     expires = Column(DateTime)
     vytvorene = Column(DateTime)
@@ -126,6 +128,12 @@ class Databaza:
                 relacia.execute(dotaz)
                 relacia.commit()
 
+    def odstran_uzivatela(self, user_id: int):
+        with self.dbsession() as relacia:
+            uzivatel_db = relacia.get(Uzivatel, user_id)
+            relacia.delete(uzivatel_db)
+            relacia.commit()
+
 
 class VyhladavacDB:
     def __init__(self, databaza: Databaza):
@@ -159,6 +167,8 @@ class VyhladavacDB:
             odpoved = self.databaza.vykonaj(dotaz)
             return odpoved[0][0]
         except NoResultFound:
+            return None
+        except IndexError:
             return None
 
     def ziskaj_clanky(self, db_id: int, typ="sprava"):
@@ -204,6 +214,25 @@ class VyhladavacDB:
         except NoResultFound:
             return None
 
+
+class GeneratorID:
+    def __init__(self, databaza: Databaza):
+        self.databaza = databaza
+        self.vyhladavac = VyhladavacDB(databaza)
+
+    def pouzivatelske_id(self) -> int:
+        generovane: int = random.randint(1000000, 9999999)
+        while True:
+            if self.vyhladavac.ziskaj_uzivatela(user_id=generovane) is None:
+                break
+        return generovane
+
+    def relacne_id(self) -> int:
+        generovane: int = random.randint(1000000, 99999999)
+        while True:
+            if self.vyhladavac.ziskaj_info_session(generovane) is None:
+                break
+        return generovane
 
 if __name__ == '__main__':
     Databaza().vytvor_databazu()

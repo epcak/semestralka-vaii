@@ -1,6 +1,6 @@
 function zmenaHesla() {
     if (document.getElementById("nove_heslo").value !== document.getElementById("opakovane_heslo").value){
-        return;
+        window.alert("Nové heslá sa nezhodujú");
     }
     let dotaz = "/zmenahesla?sid="
     dotaz = dotaz.concat(Cookies.get("SessionID"))
@@ -14,6 +14,8 @@ function zmenaHesla() {
     .then(data => {
         if (data.uspesnost === true) {
             window.location.replace("/");
+        } else {
+            window.alert("Nesprávne aktuálne heslo")
         }
     }).catch(error => console.error(error));
 }
@@ -41,7 +43,7 @@ function zmenaUdajov() {
     dlzka = email.length;
     zavinac = email.indexOf("@");
     bodka = email.indexOf(".");
-    if (bodka === -1 || zavinac === -1 || zavinac === 0 || bodka < zavinac || (bodka + 1) === dlzka) {
+    if ((bodka === -1 || zavinac === -1 || zavinac === 0 || bodka < zavinac || (bodka + 1) === dlzka) && dlzka > 0) {
         return;
     }
     let dotaz = "/zmenaudajov?sid="
@@ -50,12 +52,16 @@ function zmenaUdajov() {
     dotaz = dotaz.concat(meno)
     dotaz = dotaz.concat("&email=")
     dotaz = dotaz.concat(email)
-    fetch(dotaz, {
-        method: 'POST'
-    }).then(response => response.json())
-    .then(data => {
-        if (data.uspesnost === true) {
-            window.location.replace("/");
-        }
-    }).catch(error => console.error(error));
+    if (window.confirm("Naozaj chceš zmeniť osobné údaje účtu?")) {
+        fetch(dotaz, {
+            method: 'POST'
+        }).then(response => response.json())
+            .then(data => {
+                if (data.odpoved === "") {
+                    window.location.replace("/");
+                } else {
+                    window.alert(data.odpoved)
+                }
+            }).catch(error => console.error(error));
+    }
 }

@@ -7,6 +7,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 db = spravcadatabaze.Databaza()
 db.otvor_databazu()
 vyhladavac = spravcadatabaze.VyhladavacDB(db)
+generator_id = spravcadatabaze.GeneratorID(db)
 
 
 class Registracia:
@@ -27,7 +28,7 @@ class Registracia:
 
     def registrovanie_konta(self, udaje: dict) -> bool:
         global db, vyhladavac
-        na_pridanie = spravcadatabaze.Uzivatel(meno=udaje["meno"], email=udaje["email"], heslo=(bcrypt.hashpw(str(udaje["heslo"]).encode('utf-8'), bcrypt.gensalt())).decode('utf-8'), rola=0)
+        na_pridanie = spravcadatabaze.Uzivatel(user_id=generator_id.pouzivatelske_id() ,meno=udaje["meno"], email=udaje["email"], heslo=(bcrypt.hashpw(str(udaje["heslo"]).encode('utf-8'), bcrypt.gensalt())).decode('utf-8'), rola=0)
         db.pridaj_jedne_objekt(na_pridanie)
         try:
             self.user_id = vyhladavac.ziskaj_uzivatela(meno=udaje["meno"]).user_id
@@ -83,8 +84,9 @@ class Relacia:
         global db, vyhladavac
         vytvorene = datetime.datetime.now()
         if neexiprovat:
-            db.pridaj_jedne_objekt(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene, expires=(datetime.datetime.now() + datetime.timedelta(days=30))))
+            db.pridaj_jedne_objekt(spravcadatabaze.Relacia(session_id=generator_id.relacne_id(), user_id=uzivatel, vytvorene=vytvorene, expires=(datetime.datetime.now() + datetime.timedelta(days=30))))
         else:
-            db.pridaj_jedne_objekt(spravcadatabaze.Relacia(user_id=uzivatel, vytvorene=vytvorene))
+            rel = spravcadatabaze.Relacia(session_id=generator_id.relacne_id(), user_id=uzivatel, vytvorene=vytvorene)
+            db.pridaj_jedne_objekt(rel)
         self.sid = vyhladavac.ziskaj_najnovsiu_relaciu(uzivatel)
 
